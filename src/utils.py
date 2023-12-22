@@ -14,3 +14,6 @@ def get_executed(list_of_dicts):
     executed_list = [item for item in list_of_dicts if any(value == 'EXECUTED' for value in item.values())]
     return executed_list
 
+def get_sorted(filtered_list):
+    sorted_list = sorted(filtered_list, key=lambda x: list(x.keys())[0])
+    return sorted_list

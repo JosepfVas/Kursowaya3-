@@ -22,3 +22,10 @@ def get_sorted(list_executed):
 def get_last_five(filtered_list):
     last_five_list = filtered_list[-5:]
     return last_five_list
+
+def get_date(date_list):
+    for i in date_list:
+        if 'date' in i:
+            date_str = i['date']
+            date_value = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%S.%f').strftime('%d.%m.%Y')
+            return date_value

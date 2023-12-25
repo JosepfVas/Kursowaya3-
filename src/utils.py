@@ -1,5 +1,6 @@
 import os
 import json
+from datetime import datetime
 
 def open_json_file(filename):
     ROOT_DIR = os.path.dirname(__file__)
@@ -14,8 +15,8 @@ def get_executed(list_of_dicts):
     executed_list = [item for item in list_of_dicts if any(value == 'EXECUTED' for value in item.values())]
     return executed_list
 
-def get_sorted(filtered_list):
-    sorted_list = sorted(filtered_list, key=lambda x: list(x.keys())[0])
+def get_sorted(list_executed):
+    sorted_list = sorted(list_executed, key=lambda x: datetime.strptime(x['date'], '%Y-%m-%dT%H:%M:%S.%f'))
     return sorted_list
 
 def get_last_five(filtered_list):

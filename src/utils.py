@@ -17,3 +17,7 @@ def get_executed(list_of_dicts):
 def get_sorted(filtered_list):
     sorted_list = sorted(filtered_list, key=lambda x: list(x.keys())[0])
     return sorted_list
+
+def get_last_five(filtered_list):
+    last_five_list = filtered_list[-5:]
+    return last_five_list

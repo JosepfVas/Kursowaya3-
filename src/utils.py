@@ -29,3 +29,15 @@ def get_date(date_list):
             date_str = i['date']
             date_value = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%S.%f').strftime('%d.%m.%Y')
             return date_value
+
+
+def mask_card_number(requisites_number):
+    requisites = requisites_number
+    parts = requisites.split()
+    digits = parts[-1]
+    if requisites.lower().startwith('счет'):
+        hidded_number = f"**{digits[-4:]}"
+    else:
+        hidded_number = f"{digits[:4]}{digits[4:6]}** ****{digits[-4:]}"
+    parts[-1] = hidded_number
+    return ''.join(parts)

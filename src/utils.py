@@ -3,10 +3,7 @@ import json
 from datetime import datetime
 
 def open_json_file(filename):
-    ROOT_DIR = os.path.dirname(__file__)
-    file_path = os.path.join(ROOT_DIR, filename)
-
-    with open(file_path, 'r', encoding="utf-8") as file:
+    with open(filename, 'r', encoding="utf-8") as file:
         data = json.load(file)
     return data
 
@@ -23,21 +20,19 @@ def get_last_five(filtered_list):
     last_five_list = filtered_list[-5:]
     return last_five_list
 
-def get_date(date_list):
-    for i in date_list:
-        if 'date' in i:
-            date_str = i['date']
-            date_value = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%S.%f').strftime('%d.%m.%Y')
-            return date_value
+def get_date(input_date):
+    input_datetime = datetime.strptime(input_date, '%Y-%m-%dT%H:%M:%S.%f')
+    output_date = input_datetime.strftime('%d.%m.%Y')
+    return output_date
 
 
 def mask_card_number(requisites_number):
     requisites = requisites_number
     parts = requisites.split()
     digits = parts[-1]
-    if requisites.lower().startwith('счет'):
+    if requisites.lower().startswith('счет'):
         hidded_number = f"**{digits[-4:]}"
     else:
-        hidded_number = f"{digits[:4]}{digits[4:6]}** ****{digits[-4:]}"
+        hidded_number = f"{digits[:4]} {digits[4:6]}** **** {digits[-4:]}"
     parts[-1] = hidded_number
-    return ''.join(parts)
+    return ' '.join(parts)

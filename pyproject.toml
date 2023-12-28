@@ -16,3 +16,6 @@ pytest-cov = "^4.1.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.plugins."poetry-plugin-export"]
+version = "0.5.1"
